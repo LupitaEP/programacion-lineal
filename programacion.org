@@ -3,6 +3,9 @@
 
 
 #+options: H:2x
+
+#+latex_header: \usepackage{listings}
+
 *Teoría
 ** Motivación
 
@@ -24,9 +27,7 @@ dadas por desigualdades.
 
 Un conjunto \(X\) es *convexo* si para todos \(x,y\in X\) y \(t\in [0,1]\) se tiene que \(tx+(1-t)y\in X\). 
 ** El método simplex
-
-** Herramientascomputacionales
-
+* Herramientascomputacionales
 
 ** Emacs 
 | C-x C-s         | salvar archivo                   |
@@ -48,6 +49,39 @@ Un conjunto \(X\) es *convexo* si para todos \(x,y\in X\) y \(t\in [0,1]\) se ti
 *** Github
 ** Python
 *** El lenguaje de python
+
+En el lenguaje python podemos hacer operaciones:
+#+begin_src python :session
+2+2
+#+end_src
+
+#+RESULTS:
+: 4
+
+También podemos usar la biblioteca pulp. Por ejemplo, econtramos el máximo de 
+#+begin_src python :session
+from pulp import *
+
+x = LpVariable("x", 0, 3)
+y = LpVariable("y", 0, 1)
+
+prob = LpProblem("myProblem", LpMinimize)
+prob += x + y <= 2
+
+prob += -4*x + y
+
+status = prob.solve()
+
+prob.solve(), value(x), value(prob.objective)
+#+end_src
+
+#+RESULTS:
+| 1 | 2.0 | -8.0 |
+
+
+
+
+
 *** Jupyter
 ** LaTeX
    
